@@ -111,8 +111,14 @@ export function autofill(options: AutofillOptions): AutofillHandle {
 
 		// Several towns share this postcode and only their common prefix was
 		// filled; offer the rest through the page's own datalist if it has one.
-		if (address.partialTown && address.towns?.length && set.town instanceof HTMLInputElement) {
-			populateDatalist(set.town, address.towns.map((t) => t[script] ?? t.kanji));
+		// Always called, including with nothing to offer, so options from the
+		// previous postcode do not linger behind the next one.
+		if (set.town instanceof HTMLInputElement) {
+			const variants =
+				address.partialTown && address.towns?.length
+					? address.towns.map((t) => t[script] ?? t.kanji)
+					: [];
+			populateDatalist(set.town, variants);
 		}
 		onFill?.(address, set);
 	};

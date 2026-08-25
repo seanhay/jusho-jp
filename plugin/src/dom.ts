@@ -79,15 +79,29 @@ export function selectPrefecture(
 }
 
 /**
+ * Lists we have written into, so an empty update can tell a stale set of our
+ * own options from a set of suggestions the page authored.
+ */
+const populated = new WeakSet<HTMLDataListElement>();
+
+/**
  * Offers the towns of a multi-town postcode through the `<datalist>` the input
  * already points at, if it has one. Using the page's own datalist keeps the
  * plugin out of the business of rendering and positioning a dropdown.
+ *
+ * Passing an empty list clears one we filled earlier. That matters because the
+ * options outlive the lookup that produced them: after a postcode covering 66
+ * towns, a postcode covering one would otherwise leave all 66 in place, and
+ * clearing the field would offer towns from a different prefecture.
  */
 export function populateDatalist(el: HTMLInputElement, values: string[]): void {
 	const id = el.getAttribute('list');
 	if (!id) return;
 	const list = el.ownerDocument.getElementById(id);
 	if (!(list instanceof HTMLDataListElement)) return;
+	// Never blank a list the page filled itself; only ones we put there.
+	if (values.length === 0 && !populated.has(list)) return;
+
 	list.replaceChildren(
 		...values.map((v) => {
 			const option = el.ownerDocument.createElement('option');
@@ -95,4 +109,6 @@ export function populateDatalist(el: HTMLInputElement, values: string[]): void {
 			return option;
 		}),
 	);
+	if (values.length) populated.add(list);
+	else populated.delete(list);
 }

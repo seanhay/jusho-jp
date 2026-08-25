@@ -187,6 +187,40 @@ describe('autofill', () => {
 		expect(town.value).toBe('');
 	});
 
+	it('clears the datalist when the next postcode has no shared towns', async () => {
+		document.body.innerHTML = `
+			<form>
+				<input autocomplete="postal-code" id="zip">
+				<input autocomplete="address-line1" id="town" list="towns">
+				<datalist id="towns"></datalist>
+			</form>`;
+		autofill({ baseUrl: BASE });
+		const zip = document.getElementById('zip') as HTMLInputElement;
+		const list = document.getElementById('towns') as HTMLDataListElement;
+
+		await type(zip, '4520961');
+		expect(list.options.length).toBeGreaterThan(50);
+
+		// A postcode with a single town must not leave 66 stale options behind:
+		// emptying the field and clicking would offer towns in another prefecture.
+		await type(zip, '1000001');
+		expect(list.options.length).toBe(0);
+	});
+
+	it('does not touch a datalist the page filled itself', async () => {
+		document.body.innerHTML = `
+			<form>
+				<input autocomplete="postal-code" id="zip">
+				<input autocomplete="address-line1" id="town" list="towns">
+				<datalist id="towns"><option value="ページが用意した候補"></datalist>
+			</form>`;
+		autofill({ baseUrl: BASE });
+		// A postcode with no variants: the page's own options must survive.
+		await type(document.getElementById('zip') as HTMLInputElement, '1000001');
+		const list = document.getElementById('towns') as HTMLDataListElement;
+		expect(Array.from(list.options).map((o) => o.value)).toEqual(['ページが用意した候補']);
+	});
+
 	it('leaves a town the user typed when the next postcode has none', async () => {
 		document.body.innerHTML = `
 			<form>

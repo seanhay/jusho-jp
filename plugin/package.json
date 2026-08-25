@@ -1,6 +1,6 @@
 {
   "name": "jusho-jp",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Japanese postcode autofill for address forms. Fills 都道府県 / 市区町村 / 町域 in kanji, kana, hiragana or romaji.",
   "keywords": [
     "japan",
@@ -28,6 +28,9 @@
     "url": "https://github.com/seanhay/jusho-jp/issues"
   },
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
