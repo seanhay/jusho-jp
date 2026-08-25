@@ -51,7 +51,7 @@ autofill({ baseUrl: 'https://jusho.srh.workers.dev' });
 
 ### 対応しているフォームの形
 
-| | |
+| フォームの形 | 動作 |
 |---|---|
 | 分割された郵便番号 | `<input name="zip1">` と `<input name="zip2">` を1つの値として読みます |
 | 都道府県の `<select>` | `東京都`、`東京`、`Tokyo To`、値が `13` のいずれでも選べます |
@@ -197,7 +197,7 @@ treated as the kana counterpart of whatever they otherwise match.
 
 ### Form shapes it handles
 
-| | |
+| Form shape | What happens |
 |---|---|
 | Split postcode | `<input name="zip1">` and `<input name="zip2">` read as one value |
 | Prefecture `<select>` | Matches `東京都`, `東京`, `Tokyo To`, or the value `13` |
@@ -250,7 +250,7 @@ the user makes, resolve without going back to the network.
 autofill(options): AutofillHandle
 ```
 
-| Option | Default | |
+| Option | Default | Meaning |
 |---|---|---|
 | `baseUrl` | *required* | Where the postcode data is served from |
 | `root` | `document` | Where to look for fields |
