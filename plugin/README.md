@@ -1,5 +1,9 @@
 # jusho-jp
 
+[![npm](https://img.shields.io/npm/v/jusho-jp?color=cb3837&logo=npm)](https://www.npmjs.com/package/jusho-jp)
+[![provenance](https://img.shields.io/badge/provenance-verified-2f6f4f)](https://www.npmjs.com/package/jusho-jp#provenance)
+[![licence](https://img.shields.io/npm/l/jusho-jp?color=555)](LICENSE)
+
 **日本語** | [English](#english)
 
 郵便番号を入力すると、住所欄が自動で埋まります。約3KB、依存関係なし。
