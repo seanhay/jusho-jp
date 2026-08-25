@@ -205,6 +205,12 @@ describe('autofill', () => {
 		// emptying the field and clicking would offer towns in another prefecture.
 		await type(zip, '1000001');
 		expect(list.options.length).toBe(0);
+
+		// And going back must offer them again: clearing removes the list from
+		// the set of ones we own, so refilling has to put it back.
+		await type(zip, '4520961');
+		expect(list.options.length).toBeGreaterThan(50);
+		expect(Array.from(list.options).map((o) => o.value)).toContain('春日一本松');
 	});
 
 	it('does not touch a datalist the page filled itself', async () => {
