@@ -1,0 +1,10 @@
+{
+  "extends": "../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    // For the tests, which read fixtures off disk. tsconfig.build.json sets
+    // this back to [] so nothing node-shaped reaches the published types.
+    "types": ["node"]
+  },
+  "include": ["src", "test"]
+}

@@ -1,0 +1,25 @@
+{
+  "vintage": "2026-07-31",
+  "builtAt": "2026-08-25T01:57:11.689Z",
+  "sources": {
+    "main": {
+      "sha256": "0b52620fb659846e1893416b333e23154243060325ff1d3d3747b221b915a19d",
+      "lastModified": "Fri, 31 Jul 2026 07:59:02 GMT"
+    },
+    "rome": {
+      "sha256": "9764834dfd1d0148600c38b7fc4c00feae8443e81e68da3a49469447cd97707d",
+      "lastModified": "Sun, 11 Jan 2026 02:29:28 GMT"
+    }
+  },
+  "counts": {
+    "rows": 124513,
+    "postcodes": 120682,
+    "multiTown": 1263,
+    "romajiMissing": 0
+  },
+  "shards": {
+    "count": 948,
+    "totalBytes": 9400240,
+    "largestBytes": 96714
+  }
+}

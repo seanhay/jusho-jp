@@ -1,0 +1,53 @@
+{
+  "name": "jusho-jp",
+  "version": "0.1.2",
+  "description": "Japanese postcode autofill for address forms. Fills 都道府県 / 市区町村 / 町域 in kanji, kana, hiragana or romaji.",
+  "keywords": [
+    "japan",
+    "japanese",
+    "postcode",
+    "postal-code",
+    "zipcode",
+    "address",
+    "autofill",
+    "form",
+    "yubinbango",
+    "jusho",
+    "郵便番号",
+    "住所",
+    "ken_all"
+  ],
+  "author": "Sean Hay",
+  "license": "MIT",
+  "homepage": "https://jusho.srh.workers.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seanhay/jusho-jp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/seanhay/jusho-jp/issues"
+  },
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "node build.mjs && tsc -p tsconfig.build.json",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "jsdom": "^28.1.0"
+  }
+}

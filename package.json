@@ -1,0 +1,21 @@
+{
+  "name": "jusho-jp-mirror",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "plugin"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build -w plugin",
+    "test": "JUSHO_FIXTURES=fixtures/jp vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^24.9.2",
+    "jsdom": "^28.1.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}
